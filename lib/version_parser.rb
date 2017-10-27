@@ -5,7 +5,11 @@ class VersionParser
 
   def self.parse(version)
     parsed = version.match(/(\d+).(\d+).(\d+)/)
-    VersionParser.new(parsed[1].to_i, parsed[2].to_i, parsed[3].to_i)
+    if parsed.nil?
+      VersionParser.new(0, 0, 0)
+    else
+      VersionParser.new(parsed[1].to_i, parsed[2].to_i, parsed[3].to_i)
+    end
   end
 
   def initialize(major, minor, patch)

@@ -31,4 +31,9 @@ class VersionParserTest < Minitest::Test
     assert @v2_0_0 >= VersionParser.new(2, 0, 0)
     assert @v2_0_0 >= @v1_1_0
   end
+
+  def test_should_deal_with_wrongly_formatted_string
+    version = VersionParser.parse("Weird Data")
+    assert_equal [0, 0, 0], [version.major, version.minor, version.patch]
+  end
 end
